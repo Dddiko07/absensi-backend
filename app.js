@@ -1,6 +1,6 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 
 const absensiRoutes = require("./routes/absensi");
 
@@ -8,18 +8,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ROOT TEST (WAJIB)
+// 🔹 ROOT ROUTE (WAJIB)
 app.get("/", (req, res) => {
-  res.send("Absensi Backend OK 🚀");
+  res.json({
+    status: "OK",
+    message: "Absensi Backend is running 🚀",
+  });
 });
 
-// ROUTES
+// 🔹 API ROUTES
 app.use("/absensi", absensiRoutes);
 
-// PORT RAILWAY
-const PORT = process.env.PORT || 5000;
-
-// JANGAN NUNGGU DB
-app.listen(PORT, "0.0.0.0", () => {
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
